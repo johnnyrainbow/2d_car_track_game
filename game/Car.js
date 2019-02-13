@@ -1,12 +1,17 @@
 class Car {
-    constructor(x, y, v) {
-        this.origin_x = x
-        this.origin_y = y
-        this.x = x
-        this.y = y
-        this.width = 50
-        this.height =20
-        this.const_veloz = v
+    constructor(dna, number) {
+        dna ? this.dna = dna : this.dna = new Dna()
+        this.number = number
+        this.x = boundary[0][0]
+        this.y = boundary[0][1] + boundaryBottomOffset / 3, 5
+        this.origin_x = this.x
+        this.origin_y = this.y
+        this.dead = false
+        this.width = 20
+        this.height = 20
+        this.const_veloz = 5
+        this.fitness = 0
+        this.acc = 0
     }
 
     checkCollision() {
@@ -23,12 +28,15 @@ class Car {
 
             //now that we have the line y at our point x, we can see if we are colliding
             if (this.y <= top_line_y || this.y + this.height >= bottom_line_y) {
-                this.resetCar()
+                this.killCar()
             }
             return //no need to process other bounds
         }
     }
-
+    killCar() {
+        deadCars.push(this)
+        this.dead = true
+    }
     resetCar() {
         this.x = this.origin_x
         this.y = this.origin_y
@@ -43,21 +51,23 @@ class Car {
     notifyWin() {
         console.log("you win, tell the neural net")
     }
-    drawCar() {
+    draw() {
         fill(255, 0, 0)
         rect(this.x, this.y, this.width, this.height)
+        fill(0)
+        textSize(15)
+       text("Car " + this.number ,this.x,this.y)
     }
 
-    move(dirX, dirY) {
+    update() {
         //value validation, minmax 1,-1
-        if (dirX > 1) dirX = 1
-        if (dirY > 1) dirY = 1
-        if (dirX < -1) dirX = -1
-        if (dirY < -1) dirY = -1
-
-        this.x += dirX * this.const_veloz
-        this.y += dirY * this.const_veloz
+        this.x += this.const_veloz
+        this.y += this.dna.genes[count - 1][0]  //take movement from genes
         this.checkCollision()
         this.checkWin()
+    }
+    calculateFitness() {
+        var distance = dist(this.x, this.y, track.finishX, track.finishY)
+        this.fitness = 1 / distance
     }
 }
