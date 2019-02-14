@@ -7,6 +7,7 @@ class Track {
     }
 
     draw() {
+        stroke(255, 255, 255)
         for (var i = 0; i < this.boundaryTop.length - 1; i++) { //draw top boundary with regular bound points, bottom boundary subtracts bottomOffset on y coord
             line(this.boundaryTop[i][0], this.boundaryTop[i][1], this.boundaryTop[i + 1][0], this.boundaryTop[i + 1][1])
             line(this.boundaryTop[i][0], this.boundaryTop[i][1] + boundaryBottomOffset, this.boundaryTop[i + 1][0], this.boundaryTop[i + 1][1] + boundaryBottomOffset)
