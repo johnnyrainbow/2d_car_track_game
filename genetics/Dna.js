@@ -12,7 +12,7 @@ class Dna {
     }
 
     mutate() {
-        var amount_to_mutate = Math.floor(Math.random() * this.genes.length / 2) + 1 //1 up to 20 genes
+        var amount_to_mutate = Math.floor(Math.random() * this.genes.length / 100) + 1 //1 up to 20 genes
         while (amount_to_mutate > 0) {
             //select random gene
             var i_1 = Math.floor(Math.random() * this.genes.length - 1)

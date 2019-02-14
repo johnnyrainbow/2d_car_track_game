@@ -18,6 +18,9 @@ class Population {
                     bestCar = this.sticks[i]
                 }
             }
+            if(maxFitness > all_time_best_fitness) {
+                all_time_best_fitness = maxFitness
+            }
 
             for (var i = 0; i < this.populationSize; i++) {
                 this.sticks[i].fitness /= maxFitness // normalize

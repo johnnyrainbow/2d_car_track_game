@@ -43,9 +43,8 @@ class Car {
         this.fitness = map(distance, 0, width, width, 0)
     }
     checkWin() {
-        if (this.x >= boundary[boundary.length - 1][0]) {
-            deadCars.push(this)
-            this.dead = true
+        if (this.pos.x >= boundary[boundary.length - 1][0]) {
+           this.killCar()
         }
     }
     update() {
