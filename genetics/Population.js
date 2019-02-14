@@ -1,10 +1,10 @@
 class Population {
     constructor() {
-            this.sticks = []
+            this.cars = []
             this.populationSize = 25
             this.pool = []
             for (var i = 0; i < this.populationSize; i++) {
-                this.sticks[i] = new Car(null, i)
+                this.cars[i] = new Car(null, i)
             }
         }
 
@@ -12,10 +12,10 @@ class Population {
             var maxFitness = 0
             var bestCar
             for (var i = 0; i < this.populationSize; i++) {
-                this.sticks[i].calculateFitness()
-                if (this.sticks[i].fitness > maxFitness) {
-                    maxFitness = this.sticks[i].fitness
-                    bestCar = this.sticks[i]
+                this.cars[i].calculateFitness()
+                if (this.cars[i].fitness > maxFitness) {
+                    maxFitness = this.cars[i].fitness
+                    bestCar = this.cars[i]
                 }
             }
             if(maxFitness > all_time_best_fitness) {
@@ -23,21 +23,21 @@ class Population {
             }
 
             for (var i = 0; i < this.populationSize; i++) {
-                this.sticks[i].fitness /= maxFitness // normalize
+                this.cars[i].fitness /= maxFitness // normalize
             }
 
             this.pool = []
             for (var i = 0; i < this.populationSize; i++) {
-                var n = this.sticks[i].fitness * 100
+                var n = this.cars[i].fitness * 100
                 for (var j = 0; j < n; j++) {
-                    this.pool.push(this.sticks[i])
+                    this.pool.push(this.cars[i])
                 }
             }
         }
 
         selection() {
-            var newSticks = [];
-            for (var i = 0; i < this.sticks.length; i++) {
+            var newcars = [];
+            for (var i = 0; i < this.cars.length; i++) {
                 var label = i
                 var parentA = random(this.pool).dna;
                 var parentB = random(this.pool).dna;
@@ -49,17 +49,17 @@ class Population {
                     label = "MUTATED"
                 }
 
-                newSticks[i] = new Car(child, label);
+                newcars[i] = new Car(child, label);
             }
 
-            this.sticks = newSticks;
+            this.cars = newcars;
         }
 
         run() {
             for (var i = 0; i < this.populationSize; i++) {
-                if (!this.sticks[i].dead) {
-                    this.sticks[i].update()
-                    this.sticks[i].show()
+                if (!this.cars[i].dead) {
+                    this.cars[i].update()
+                    this.cars[i].show()
                 }
             }
         }

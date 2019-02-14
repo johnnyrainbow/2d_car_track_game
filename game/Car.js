@@ -73,6 +73,6 @@ class Car {
         stroke(255)
         textSize(20)
         fill(255)
-        text(this.num, this.pos.x + 10, this.pos.y)
+        //text(this.num, this.pos.x + 10, this.pos.y)
     }
 }
