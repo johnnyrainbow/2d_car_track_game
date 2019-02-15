@@ -1,22 +1,22 @@
 var population
-var lifespan = 1000
+var lifespan = 2000
 var visualLifespan
 var count = 0
 var target
-var maxForce = 0.3
+var maxForce = 0.1
 var deadCars = []
 var generation = 0
 var all_time_best_fitness = 0
 //our boundary array of points [x,y], represents the track outline
-const boundary = [[0, 50], [150, 52], [350, 120], [500, 40], [800, 300], [1000, 220], [1200, 350]]
-const boundaryBottomOffset = 200
+const boundary = [[0, 50], [150, 52], [350, 120], [500, 40], [800, 200], [1000, 220], [1200, 50]]
+const boundaryBottomOffset = 120
 
 function setup() {
     createCanvas(2000, 1000)
 
     population = new Population()
     visualLifespan = createP()
-    target = createVector(width, boundary[boundary.length - 1][1] + boundaryBottomOffset / 2)
+    target = createVector(width, boundary[boundary.length - 1][1])
     track = new Track(boundary)
 }
 

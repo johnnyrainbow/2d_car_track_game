@@ -1,7 +1,7 @@
 class Population {
     constructor() {
             this.cars = []
-            this.populationSize = 25
+            this.populationSize = 1000
             this.pool = []
             for (var i = 0; i < this.populationSize; i++) {
                 this.cars[i] = new Car(null, i)
@@ -44,7 +44,7 @@ class Population {
 
                 var child = parentA.crossover(parentB);
                 //child.mutation();
-                if (Math.floor(Math.random() * 10) === 0) { //5% chance per generation
+                if (Math.floor(Math.random() * 5) === 0) { //5% chance per generation
                     child.mutate()
                     label = "MUTATED"
                 }

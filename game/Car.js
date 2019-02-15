@@ -2,8 +2,8 @@ class Car {
     constructor(dna, number) {
         dna ? this.dna = dna : this.dna = new Dna()
         this.num = number
-        this.height = 15
-        this.width = 30
+        this.height = 2
+        this.width = 5
         this.dead = false
         this.pos = createVector(0, boundary[0][1] + boundaryBottomOffset / 3, 5)
         this.vel = createVector()
@@ -68,7 +68,7 @@ class Car {
         translate(this.pos.x, this.pos.y)
         rotate(this.vel.heading())
         rectMode(CENTER)
-        rect(0, 0, this.width, this.height)
+        ellipse(0, 0, this.width, this.height)
         pop()
         stroke(255)
         textSize(20)
