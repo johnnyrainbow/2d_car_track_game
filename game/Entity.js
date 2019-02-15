@@ -1,22 +1,21 @@
-class Car {
-    constructor(dna, number) {
+class Entity {
+    constructor(dna, number, w, h) {
         dna ? this.dna = dna : this.dna = new Dna()
         this.num = number
-        this.height = 2
-        this.width = 5
+        this.height = w || 2
+        this.width = h || 5
         this.dead = false
         this.pos = createVector(0, boundary[0][1] + boundaryBottomOffset / 3, 5)
         this.vel = createVector()
         this.acc = createVector()
-
         this.fitness = 0
     }
     applyForce(force) {
         this.acc.add(force)
     }
-    killCar() {
+    killEntity() {
         this.dead = true
-        deadCars.push(this)
+        deadEntities.push(this)
     }
     checkCollision() {
         for (var i = 0; i < boundary.length - 1; i++) {
@@ -32,7 +31,7 @@ class Car {
 
             //now that we have the line y at our point x, we can see if we are colliding
             if (this.pos.y <= top_line_y || this.pos.y + this.height >= bottom_line_y || this.pos.x < 0) {
-                this.killCar()
+                this.killEntity()
             }
             return //no need to process other bounds
         }
@@ -44,7 +43,7 @@ class Car {
     }
     checkWin() {
         if (this.pos.x >= boundary[boundary.length - 1][0]) {
-           this.killCar()
+            this.killEntity()
         }
     }
     update() {
