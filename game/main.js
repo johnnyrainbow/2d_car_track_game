@@ -8,7 +8,7 @@ var deadCars = []
 var generation = 0
 var all_time_best_fitness = 0
 //our boundary array of points [x,y], represents the track outline
-const boundary = [[0, 50], [150, 52], [350, 120], [500, 40], [800, 200], [1000, 220], [1200, 50]]
+const boundary = [[0, 0], [250, 102], [350, 200], [500, 420],[650,420], [800, 280], [1000, 220], [1200, 50]]
 const boundaryBottomOffset = 120
 
 function setup() {

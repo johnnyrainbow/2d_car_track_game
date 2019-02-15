@@ -59,8 +59,8 @@ class Population {
             for (var i = 0; i < this.populationSize; i++) {
                 if (!this.cars[i].dead) {
                     this.cars[i].update()
-                    this.cars[i].show()
                 }
+                this.cars[i].show()
             }
         }
     }
