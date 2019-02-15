@@ -31,18 +31,22 @@ function draw() {
     textSize(13)
     stroke(1)
     text("maximum fitness " + Math.round(all_time_best_fitness * 100) / 100, 200, 20)
-    ellipse(target.x, target.y, 16, 16)
     text("Top entities per generation:", 20, height / 1.5 - 50)
+    displayTopPerformers()
+}
+function displayTopPerformers() {
     for (var i = 0; i < best_entity_generation.length; i++) {
         var e = new Entity(best_entity_generation[i].dna, best_entity_generation[i].num, 10, 40)
-        e.pos.x = 40 + 150 * i
-        e.pos.y = height / 1.5 + 30
+        var _x = 40
+        var _offset = 150
+        var _y = height / 1.5
+        e.pos.x = _x + _offset * i
+        e.pos.y = _y + 30
         e.show()
-        text(i, 20 + + 150 * i, height / 1.5)
+        text(i, 20 + _offset * i, _y)
         textSize(12)
         stroke(1)
-        text(Math.round(best_entity_generation[i].fitness * 100) / 100, 20 + 150 * i, height / 1.5 + 80)
-
+        text(Math.round(best_entity_generation[i].fitness * 100) / 100, 20 + _offset * i, _y + 80)
     }
 }
 function checkLifespanOver() {
